@@ -2,11 +2,15 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -188,6 +192,10 @@ public class editStudent {
 		frame.getContentPane().add(separator);
 		
 		JButton btnUpdateStudent = new JButton("UPDATE STUDENT");
+		btnUpdateStudent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnUpdateStudent.setBounds(56, 673, 141, 23);
 		frame.getContentPane().add(btnUpdateStudent);
 		
@@ -199,7 +207,12 @@ public class editStudent {
 		btnLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int rollno=Integer.parseInt(textField.getText());
+				if(textField.equals("")){
+					JOptionPane.showMessageDialog(null, "Please Enter roll no");
+				}
+				else{
 				AddStudentGetterSetter a=new studentDatabase().searchByRollNo(rollno);
+				
 				textField_1.setText(a.getName());
 				textField_2.setText(a.getEmail());
 				textField_3.setText(a.getCourse());
@@ -211,7 +224,7 @@ public class editStudent {
 				textField_8.setText(a.getcontactno());
 				textField_9.setText(String.valueOf(a.getpaid()));
 				
-				
+				}
 			}
 		});
 		btnLoad.setBounds(370, 57, 89, 23);
